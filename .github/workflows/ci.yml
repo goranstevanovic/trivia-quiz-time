@@ -1,0 +1,46 @@
+name: Continuous Integration (CI)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-format-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install package dependencies
+        run: npm ci
+      - name: Check linting
+        run: npm run eslint
+      - name: Check formatting
+        run: npm run prettier
+      - name: Run tests
+        run: npm test
+
+  build:
+    runs-on: ubuntu-latest
+    needs: lint-format-test
+    if: needs.lint-format-test.result == 'success'
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install package dependencies
+        run: npm ci
+      - name: Build the app
+        run: npm run build
