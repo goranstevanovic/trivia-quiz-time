@@ -1,6 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap');
 
 :root {
+  /* Fonts */
+  --font-family: 'Open Sans', sans-serif;
+
+  /* Text colors */
+  --text-accent: #4a61ed;
+  --text-light: #fff;
+  --text-primary: #28264f;
+  --text-secondary: #76729c;
+
+  /* Background solid colors */
+  --background-light-transparent: rgba(255, 255, 255, 0.75);
+  --background-light: #fff;
+
+  /* Background gradient colors */
+  --background-gradient-dark: linear-gradient(135deg, #4a61ed 0%, #a566f8 100%);
+  --background-gradient-medium: linear-gradient(
+    180deg,
+    #dee1fb 0%,
+    #e8e7fc 100%
+  );
+  --background-gradient-light: linear-gradient(
+    180deg,
+    #f2f2fd 0%,
+    #fefdff 100%
+  );
+  --background-gradient-correct: linear-gradient(
+    90deg,
+    #3d8a42 0%,
+    #51c75b 100%
+  );
+  --background-gradient-incorrect: linear-gradient(
+    90deg,
+    #7a2724 0%,
+    #de383a 100%
+  );
+
+  /* Box shadow */
+  --box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
