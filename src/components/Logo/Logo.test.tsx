@@ -7,6 +7,6 @@ describe('Logo', () => {
   it('displays the component name', () => {
     render(<Logo />);
 
-    expect(screen.getByText('Logo')).toBeTruthy();
+    expect(screen.getByText('Trivia Quiz Time')).toBeTruthy();
   });
 });
