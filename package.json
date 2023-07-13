@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "eslint": "eslint src",
     "prettier": "prettier src --check",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "vitest"
   },
   "dependencies": {
     "react": "^18.2.0",
