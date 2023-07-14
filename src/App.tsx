@@ -1,9 +1,9 @@
-import StartScreen from './components/StartScreen';
+import SettingsScreen from './components/SettingsScreen';
 
 function App() {
   return (
     <>
-      <StartScreen />
+      <SettingsScreen />
     </>
   );
 }
