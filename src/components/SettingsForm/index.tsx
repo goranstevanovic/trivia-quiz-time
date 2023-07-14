@@ -1,6 +1,8 @@
+import styles from './SettingsForm.module.css';
+
 export default function SettingsForm() {
   return (
-    <form>
+    <form className={styles.form}>
       <div>
         <label htmlFor="name">Your name</label>
         <input id="name" type="text" placeholder="John Doe" />
