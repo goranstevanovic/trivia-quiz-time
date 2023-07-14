@@ -39,6 +39,10 @@
 
   /* Box shadow */
   --box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+
+  /* Border */
+  --border-radius: 8px;
+  --border: 2px solid #fff;
 }
 
 html {
