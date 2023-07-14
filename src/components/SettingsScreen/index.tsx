@@ -1,3 +1,9 @@
+import SettingsForm from '../SettingsForm';
+
 export default function SettingsScreen() {
-  return <div>Settings Screen</div>;
+  return (
+    <div>
+      <SettingsForm />
+    </div>
+  );
 }
