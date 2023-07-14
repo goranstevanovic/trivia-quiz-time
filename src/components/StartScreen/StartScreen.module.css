@@ -1,0 +1,10 @@
+.startScreen {
+  align-items: center;
+  background: var(--background-gradient-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
