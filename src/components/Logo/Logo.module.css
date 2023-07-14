@@ -1,0 +1,31 @@
+.logoContainer {
+  align-items: center;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.supHeading,
+.heading,
+.subHeading {
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.supHeading {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.heading {
+  font-size: 4rem;
+  font-weight: 800;
+}
+
+.subHeading {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
