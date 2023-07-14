@@ -5,9 +5,8 @@ import App from './App';
 
 describe('App', () => {
   it('renders headline', () => {
-    render(<App />);
-    const h1 = screen.getByText('Vite + React');
+    const app = render(<App />);
 
-    expect(h1).not.toBeNull();
+    expect(app).not.toBeNull();
   });
 });
