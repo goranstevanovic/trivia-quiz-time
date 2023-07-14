@@ -1,7 +1,9 @@
+import StartScreen from './components/StartScreen';
+
 function App() {
   return (
     <>
-      <h1>Vite + React</h1>
+      <StartScreen />
     </>
   );
 }
