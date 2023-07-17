@@ -1,9 +1,9 @@
-import Question from './components/Question';
+import QuizScreen from './components/QuizScreen';
 
 function App() {
   return (
     <>
-      <Question />
+      <QuizScreen />
     </>
   );
 }

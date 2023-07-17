@@ -1,0 +1,41 @@
+.quizScreen {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.quizMeta {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.questionNumber {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.pointsWrapper {
+  align-items: center;
+  background: var(--background-gradient-light);
+  border-radius: var(--border-radius);
+  border: var(--border);
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  padding: 0.5rem 3rem;
+}
+
+.pointsWrapper p {
+  line-height: 1.25;
+  margin: 0;
+}
+
+.pointsAmount {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
