@@ -16,7 +16,7 @@ export default function QuizScreen() {
 
       <Question />
 
-      <Button>Next Question</Button>
+      <Button size="small">Next Question</Button>
     </div>
   );
 }
