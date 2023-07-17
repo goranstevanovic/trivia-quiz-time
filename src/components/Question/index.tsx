@@ -1,15 +1,5 @@
 import styles from './Question.module.css';
 
-const question = {
-  category: 'General Knowledge',
-  type: 'multiple',
-  difficulty: 'easy',
-  question:
-    'Which of the following card games revolves around numbers and basic math?',
-  correct_answer: 'Uno',
-  incorrect_answers: ['Go Fish', 'Twister', 'Munchkin'],
-};
-
 export default function Question() {
   return (
     <div className={styles.questionWrapper}>
