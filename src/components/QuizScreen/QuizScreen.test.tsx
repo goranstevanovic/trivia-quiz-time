@@ -4,9 +4,15 @@ import { render, screen } from '@testing-library/react';
 import QuizScreen from '.';
 
 describe('Question', () => {
-  it('displays the component name', () => {
+  it('displays the question number', () => {
     render(<QuizScreen />);
 
-    expect(screen.getByText(/QuizScreen/)).toBeTruthy();
+    expect(screen.findByText(/Question.*/)).toBeTruthy();
+  });
+
+  it('displays the total points', () => {
+    render(<QuizScreen />);
+
+    expect(screen.findByText(/Points.*/)).toBeTruthy();
   });
 });
