@@ -7,6 +7,6 @@ describe('Question', () => {
   it('displays the component name', () => {
     render(<Question />);
 
-    expect(screen.getByText(/Question/)).toBeTruthy();
+    expect(screen.getByText(/General Knowledge/)).toBeTruthy();
   });
 });
