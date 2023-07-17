@@ -1,3 +1,5 @@
+import styles from './Question.module.css';
+
 const question = {
   category: 'General Knowledge',
   type: 'multiple',
@@ -8,20 +10,22 @@ const question = {
   incorrect_answers: ['Go Fish', 'Twister', 'Munchkin'],
 };
 
-const answers = [question.correct_answer, ...question.incorrect_answers];
-
 export default function Question() {
   return (
-    <div>
-      <header>
-        <p>{question.category}</p>
-        <p>{question.difficulty}</p>
+    <div className={styles.questionWrapper}>
+      <header className={styles.questionMeta}>
+        <p>General Knowledge</p>
+        <p>Easy (10 points)</p>
       </header>
-      <p>{question.question}</p>
-      <ul>
-        {answers.map((answer) => (
-          <li>{answer}</li>
-        ))}
+      <p className={styles.questionText}>
+        Which of the following card games revolves around numbers and basic
+        math?
+      </p>
+      <ul className={styles.answerOptions}>
+        <li className={styles.answerOption}>Uno</li>
+        <li className={styles.answerOption}>Go Fish</li>
+        <li className={styles.answerOption}>Twister</li>
+        <li className={styles.answerOption}>Munchkin</li>
       </ul>
     </div>
   );
