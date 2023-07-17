@@ -1,16 +1,17 @@
 import Button from '../Button';
 import Question from '../Question';
+import styles from './QuizScreen.module.css';
 
 export default function QuizScreen() {
   return (
-    <div>
-      <div>
-        <p>
+    <div className={styles.quizScreen}>
+      <div className={styles.quizMeta}>
+        <p className={styles.questionNumber}>
           Question <strong>25/50</strong>
         </p>
-        <div>
+        <div className={styles.pointsWrapper}>
           <p>Points</p>
-          <p>1,000</p>
+          <p className={styles.pointsAmount}>1,000</p>
         </div>
       </div>
 
