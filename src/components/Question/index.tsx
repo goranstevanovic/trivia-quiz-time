@@ -23,9 +23,15 @@ export default function Question() {
       </p>
       <ul className={styles.answerOptions}>
         <li className={styles.answerOption}>Uno</li>
-        <li className={styles.answerOption}>Go Fish</li>
-        <li className={styles.answerOption}>Twister</li>
-        <li className={styles.answerOption}>Munchkin</li>
+        <li className={`${styles.answerOption} ${styles.answerCorrect}`}>
+          Go Fish
+        </li>
+        <li className={`${styles.answerOption} ${styles.answerSelected}`}>
+          Twister
+        </li>
+        <li className={`${styles.answerOption} ${styles.answerIncorrect}`}>
+          Munchkin
+        </li>
       </ul>
     </div>
   );
