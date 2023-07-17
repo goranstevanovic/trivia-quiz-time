@@ -1,9 +1,9 @@
-import SettingsScreen from './components/SettingsScreen';
+import Question from './components/Question';
 
 function App() {
   return (
     <>
-      <SettingsScreen />
+      <Question />
     </>
   );
 }
