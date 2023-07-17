@@ -1,9 +1,16 @@
-import ResultsScreen from './components/ResultsScreen';
+import StartScreen from './components/StartScreen';
+import SettingsScreen from './components/SettingsScreen';
+import { useQuiz } from './contexts/QuizContext';
 
 function App() {
+  const quizContext = useQuiz();
+
+  const status = quizContext?.status;
+
   return (
     <>
-      <ResultsScreen />
+      {status === 'finished' && <StartScreen />}
+      {status === 'settings' && <SettingsScreen />}
     </>
   );
 }

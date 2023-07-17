@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
 
-type QuizStatus = 'finished' | 'active';
+type QuizStatus = 'finished' | 'settings';
 
 type QuizContextType = {
   status: QuizStatus;
@@ -22,7 +22,7 @@ function quizReducer(
     case 'start':
       return {
         ...state,
-        status: 'active',
+        status: 'settings',
       };
   }
 }
