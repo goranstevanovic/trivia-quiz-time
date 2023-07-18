@@ -1,29 +1,32 @@
 import { createContext, useContext, useReducer } from 'react';
 
-type QuizStatus = 'finished' | 'settings';
+type QuizStatus = 'inactive' | 'settings';
 
-type QuizContextType = {
+type QuizActionType = 'settings';
+
+type QuizState = {
   status: QuizStatus;
 };
 
-type QuizAction = { type: 'start' };
-
-const initialState: QuizContextType = {
-  status: 'finished',
+type QuizAction = {
+  type: QuizActionType;
 };
 
-const QuizContext = createContext<QuizContextType | null>(null);
+const initialState: QuizState = {
+  status: 'inactive',
+};
 
-function quizReducer(
-  state: QuizContextType,
-  action: QuizAction,
-): QuizContextType {
+const QuizContext = createContext<QuizState | null>(null);
+
+function quizReducer(state: QuizState, action: QuizAction): QuizState {
   switch (action.type) {
-    case 'start':
+    case 'settings':
       return {
         ...state,
         status: 'settings',
       };
+    default:
+      return state;
   }
 }
 
@@ -35,9 +38,9 @@ function QuizProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-function useQuiz() {
+function useQuiz(): QuizState {
   const context = useContext(QuizContext);
-  if (context === undefined) {
+  if (context === undefined || context === null) {
     throw new Error('QuizContext must be used within QuizProvider');
   }
   return context;
