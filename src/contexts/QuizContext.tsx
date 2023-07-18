@@ -1,11 +1,14 @@
-import { createContext, useContext, useReducer } from 'react';
+import { Dispatch, createContext, useContext, useReducer } from 'react';
 
 type QuizStatus = 'inactive' | 'settings';
 
 type QuizActionType = 'settings';
 
+type QuizDispatch = Dispatch<QuizAction>;
+
 type QuizState = {
   status: QuizStatus;
+  dispatch?: QuizDispatch;
 };
 
 type QuizAction = {
@@ -34,7 +37,9 @@ function QuizProvider({ children }: { children: React.ReactNode }) {
   const [{ status }, dispatch] = useReducer(quizReducer, initialState);
 
   return (
-    <QuizContext.Provider value={{ status }}>{children}</QuizContext.Provider>
+    <QuizContext.Provider value={{ status, dispatch }}>
+      {children}
+    </QuizContext.Provider>
   );
 }
 
