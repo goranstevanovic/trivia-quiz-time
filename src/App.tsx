@@ -1,9 +1,14 @@
-import ResultsScreen from './components/ResultsScreen';
+import StartScreen from './components/StartScreen';
+import SettingsScreen from './components/SettingsScreen';
+import { useQuiz } from './contexts/QuizContext.tsx';
 
 function App() {
+  const { status } = useQuiz();
+
   return (
     <>
-      <ResultsScreen />
+      {status === 'inactive' && <StartScreen />}
+      {status === 'settings' && <SettingsScreen />}
     </>
   );
 }

@@ -17,7 +17,14 @@ export default function QuizScreen() {
 
       <Question />
 
-      <Button size="small">Next Question</Button>
+      <Button
+        size="small"
+        onClick={function () {
+          return;
+        }}
+      >
+        Next Question
+      </Button>
     </div>
   );
 }

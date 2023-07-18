@@ -16,7 +16,13 @@ export default function ResultsScreen() {
         </div>
       </div>
 
-      <Button>Play Again</Button>
+      <Button
+        onClick={function () {
+          return;
+        }}
+      >
+        Play Again
+      </Button>
     </div>
   );
 }

@@ -6,7 +6,13 @@ export default function SettingsScreen() {
   return (
     <div className={styles.settingsScreen}>
       <SettingsForm />
-      <Button>Start Quiz</Button>
+      <Button
+        onClick={function () {
+          return;
+        }}
+      >
+        Start Quiz
+      </Button>
     </div>
   );
 }

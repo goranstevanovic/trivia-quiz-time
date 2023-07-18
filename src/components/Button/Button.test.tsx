@@ -5,7 +5,15 @@ import Button from '.';
 
 describe('Button', () => {
   it('displays correct label', () => {
-    render(<Button>Test Button</Button>);
+    render(
+      <Button
+        onClick={function () {
+          return;
+        }}
+      >
+        Test Button
+      </Button>,
+    );
 
     expect(screen.getByText('Test Button')).toBeDefined();
   });
