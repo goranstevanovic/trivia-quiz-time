@@ -19,6 +19,17 @@ export default function QuizScreen() {
     }
   }
 
+  function finishQuizClickHandler() {
+    if (dispatch) {
+      dispatch({ type: 'finishQuiz' });
+    }
+  }
+
+  const buttonClickHandler =
+    currentQuestionIndex === questions.length - 1
+      ? finishQuizClickHandler
+      : nextButtonClickHandler;
+
   return (
     <div className={styles.quizScreen}>
       <div className={styles.quizMeta}>
@@ -36,7 +47,7 @@ export default function QuizScreen() {
 
       <Question />
 
-      <Button size="small" onClick={nextButtonClickHandler}>
+      <Button size="small" onClick={buttonClickHandler}>
         {buttonText}
       </Button>
     </div>

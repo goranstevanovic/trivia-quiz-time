@@ -8,6 +8,24 @@ import {
 
 const BASE_URL = 'https://opentdb.com/api.php';
 
+function calculateTotalPossiblePoints(array: QuestionsType) {
+  return array.reduce(function (
+    totalPoints: number,
+    currentQuestion: QuestionType,
+  ) {
+    switch (currentQuestion.difficulty) {
+      case 'easy':
+        return totalPoints + 10;
+      case 'medium':
+        return totalPoints + 20;
+      case 'hard':
+        return totalPoints + 30;
+      default:
+        return totalPoints;
+    }
+  }, 0);
+}
+
 type QuizAPIResponse = {
   response_code: number;
   results: [];
@@ -71,6 +89,7 @@ type QuizState = {
   selectedAnswer: string;
   correctAnswers: number;
   points: number;
+  totalPossiblePoints: number;
   error: string;
   dispatch?: QuizDispatch;
 };
@@ -122,6 +141,10 @@ type QuizActionNextQuestion = {
   type: 'nextQuestion';
 };
 
+type QuizActionFinishQuiz = {
+  type: 'finishQuiz';
+};
+
 type QuizAction =
   | QuizActionShowSettings
   | QuizActionSettingsSaveName
@@ -132,7 +155,8 @@ type QuizAction =
   | QuizActionDataReceived
   | QuizActionDataFailed
   | QuizActionNewAnswer
-  | QuizActionNextQuestion;
+  | QuizActionNextQuestion
+  | QuizActionFinishQuiz;
 
 const initialState: QuizState = {
   status: 'inactive',
@@ -145,6 +169,7 @@ const initialState: QuizState = {
   selectedAnswer: '',
   correctAnswers: 0,
   points: 0,
+  totalPossiblePoints: 100,
   error: '',
 };
 
@@ -213,6 +238,7 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
         ...state,
         status: 'active',
         questions: action.payload,
+        totalPossiblePoints: calculateTotalPossiblePoints(action.payload),
       };
     case 'dataFailed':
       return {
@@ -228,6 +254,10 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
           action.payload === currentCorrectAnswer
             ? state.points + currentPoints
             : state.points,
+        correctAnswers:
+          action.payload === currentCorrectAnswer
+            ? state.correctAnswers + 1
+            : state.correctAnswers,
       };
     case 'nextQuestion': {
       console.log(state.currentQuestionIndex);
@@ -235,6 +265,12 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
         ...state,
         currentQuestionIndex: state.currentQuestionIndex++,
         selectedAnswer: '',
+      };
+    }
+    case 'finishQuiz': {
+      return {
+        ...state,
+        status: 'finished',
       };
     }
     default:
@@ -255,10 +291,13 @@ function QuizProvider({ children }: { children: React.ReactNode }) {
       selectedAnswer,
       correctAnswers,
       points,
+      totalPossiblePoints,
       error,
     },
     dispatch,
   ] = useReducer(quizReducer, initialState);
+
+  console.log('totalPossiblePoints:', totalPossiblePoints);
 
   useEffect(
     function () {
@@ -298,6 +337,7 @@ function QuizProvider({ children }: { children: React.ReactNode }) {
         selectedAnswer,
         correctAnswers,
         points,
+        totalPossiblePoints,
         error,
         dispatch,
       }}

@@ -3,6 +3,7 @@ import SettingsScreen from './components/SettingsScreen';
 import { useQuiz } from './contexts/QuizContext.tsx';
 import LoadingScreen from './components/LoadingScreen/index.tsx';
 import QuizScreen from './components/QuizScreen/index.tsx';
+import ResultsScreen from './components/ResultsScreen/index.tsx';
 
 function App() {
   const { status } = useQuiz();
@@ -13,6 +14,7 @@ function App() {
       {status === 'showSettings' && <SettingsScreen />}
       {status === 'loading' && <LoadingScreen />}
       {status === 'active' && <QuizScreen />}
+      {status === 'finished' && <ResultsScreen />}
     </>
   );
 }
