@@ -23,16 +23,17 @@ export default function Question() {
       <p className={styles.questionText}>{currentQuestion?.question}</p>
       <ul className={styles.answerOptions}>
         {shuffledAnswers.map((answer) => (
-          <li
-            className={styles.answerOption}
-            key={answer}
-            onClick={() => {
-              if (dispatch) {
-                dispatch({ type: 'newAnswer', payload: answer });
-              }
-            }}
-          >
-            {answer}
+          <li key={answer}>
+            <button
+              className={styles.answerOption}
+              onClick={() => {
+                if (dispatch) {
+                  dispatch({ type: 'newAnswer', payload: answer });
+                }
+              }}
+            >
+              {answer}
+            </button>
           </li>
         ))}
       </ul>
