@@ -5,8 +5,10 @@ import styles from './ResultsScreen.module.css';
 export default function ResultsScreen() {
   const { questions, correctAnswers, points, totalPossiblePoints } = useQuiz();
   const totalAnswers = questions.length;
-  const correctAnswersPercent = (correctAnswers / totalAnswers) * 100;
-  const pointsPercentage = (points / totalPossiblePoints) * 100;
+  const correctAnswersPercent = Math.round(
+    (correctAnswers / totalAnswers) * 100,
+  );
+  const pointsPercentage = Math.round((points / totalPossiblePoints) * 100);
 
   return (
     <div className={styles.resultsScreen}>
