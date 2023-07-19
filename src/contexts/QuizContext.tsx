@@ -219,7 +219,10 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
       return {
         ...state,
         selectedAnswer: action.payload,
-        points: action.payload === currentCorrectAnswer ? currentPoints : 0,
+        points:
+          action.payload === currentCorrectAnswer
+            ? state.points + currentPoints
+            : state.points,
       };
     default:
       return state;
