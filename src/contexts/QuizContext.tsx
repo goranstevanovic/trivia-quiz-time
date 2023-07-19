@@ -122,6 +122,10 @@ type QuizActionNextQuestion = {
   type: 'nextQuestion';
 };
 
+type QuizActionFinishQuiz = {
+  type: 'finishQuiz';
+};
+
 type QuizAction =
   | QuizActionShowSettings
   | QuizActionSettingsSaveName
@@ -132,7 +136,8 @@ type QuizAction =
   | QuizActionDataReceived
   | QuizActionDataFailed
   | QuizActionNewAnswer
-  | QuizActionNextQuestion;
+  | QuizActionNextQuestion
+  | QuizActionFinishQuiz;
 
 const initialState: QuizState = {
   status: 'inactive',
@@ -235,6 +240,12 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
         ...state,
         currentQuestionIndex: state.currentQuestionIndex++,
         selectedAnswer: '',
+      };
+    }
+    case 'finishQuiz': {
+      return {
+        ...state,
+        status: 'finished',
       };
     }
     default:
