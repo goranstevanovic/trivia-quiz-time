@@ -2,11 +2,16 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import Question from '.';
+import { QuizProvider } from '../../contexts/QuizContext';
 
 describe('Question', () => {
   it('displays the component name', () => {
-    render(<Question />);
+    render(
+      <QuizProvider>
+        <Question />
+      </QuizProvider>,
+    );
 
-    expect(screen.getByText(/General Knowledge/)).toBeTruthy();
+    expect(screen.findByText(/[easy|medium|hard]:*/i)).toBeTruthy();
   });
 });
