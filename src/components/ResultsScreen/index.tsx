@@ -3,7 +3,8 @@ import Button from '../Button';
 import styles from './ResultsScreen.module.css';
 
 export default function ResultsScreen() {
-  const { questions, correctAnswers, points, totalPossiblePoints } = useQuiz();
+  const { questions, correctAnswers, points, totalPossiblePoints, dispatch } =
+    useQuiz();
   const totalAnswers = questions.length;
   const correctAnswersPercent = Math.round(
     (correctAnswers / totalAnswers) * 100,
@@ -30,7 +31,9 @@ export default function ResultsScreen() {
 
       <Button
         onClick={function () {
-          return;
+          if (dispatch) {
+            dispatch({ type: 'playAgain' });
+          }
         }}
       >
         Play Again
