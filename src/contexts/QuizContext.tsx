@@ -8,6 +8,24 @@ import {
 
 const BASE_URL = 'https://opentdb.com/api.php';
 
+function calculateTotalPossiblePoints(array: QuestionsType) {
+  return array.reduce(function (
+    totalPoints: number,
+    currentQuestion: QuestionType,
+  ) {
+    switch (currentQuestion.difficulty) {
+      case 'easy':
+        return totalPoints + 10;
+      case 'medium':
+        return totalPoints + 20;
+      case 'hard':
+        return totalPoints + 30;
+      default:
+        return totalPoints;
+    }
+  }, 0);
+}
+
 type QuizAPIResponse = {
   response_code: number;
   results: [];
@@ -71,6 +89,7 @@ type QuizState = {
   selectedAnswer: string;
   correctAnswers: number;
   points: number;
+  totalPossiblePoints: number;
   error: string;
   dispatch?: QuizDispatch;
 };
@@ -150,6 +169,7 @@ const initialState: QuizState = {
   selectedAnswer: '',
   correctAnswers: 0,
   points: 0,
+  totalPossiblePoints: 100,
   error: '',
 };
 
@@ -218,6 +238,7 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
         ...state,
         status: 'active',
         questions: action.payload,
+        totalPossiblePoints: calculateTotalPossiblePoints(action.payload),
       };
     case 'dataFailed':
       return {
@@ -270,10 +291,13 @@ function QuizProvider({ children }: { children: React.ReactNode }) {
       selectedAnswer,
       correctAnswers,
       points,
+      totalPossiblePoints,
       error,
     },
     dispatch,
   ] = useReducer(quizReducer, initialState);
+
+  console.log('totalPossiblePoints:', totalPossiblePoints);
 
   useEffect(
     function () {
@@ -313,6 +337,7 @@ function QuizProvider({ children }: { children: React.ReactNode }) {
         selectedAnswer,
         correctAnswers,
         points,
+        totalPossiblePoints,
         error,
         dispatch,
       }}
