@@ -48,7 +48,7 @@ export type QuizQuestionCategory =
   | '31'
   | '32';
 export type QuizQuestionDifficulty = 'any' | 'easy' | 'medium' | 'hard';
-type Question = {
+export type QuestionType = {
   category: string;
   type: string;
   difficulty: string;
@@ -56,7 +56,7 @@ type Question = {
   correct_answer: string;
   incorrect_answers: string[];
 };
-type Questions = Question[];
+type QuestionsType = QuestionType[];
 
 type QuizDispatch = Dispatch<QuizAction>;
 
@@ -66,8 +66,8 @@ type QuizState = {
   numberOfQuestions: QuizNumberOfQuestions;
   category: QuizQuestionCategory;
   difficulty: QuizQuestionDifficulty;
-  questions: Questions;
-  currentQuestion: number;
+  questions: QuestionsType;
+  currentQuestionIndex: number;
   selectedAnswer: number | null;
   correctAnswers: number;
   points: number;
@@ -105,7 +105,7 @@ type QuizActionStartQuiz = {
 
 type QuizActionDataReceived = {
   type: 'dataReceived';
-  payload: Questions;
+  payload: QuestionsType;
 };
 
 type QuizActionDataFailed = {
@@ -130,7 +130,7 @@ const initialState: QuizState = {
   category: 'any',
   difficulty: 'any',
   questions: [],
-  currentQuestion: 0,
+  currentQuestionIndex: 0,
   selectedAnswer: null,
   correctAnswers: 0,
   points: 0,
@@ -171,7 +171,7 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
         ...state,
         status: 'loading',
         questions: [],
-        currentQuestion: 0,
+        currentQuestionIndex: 0,
         selectedAnswer: null,
         correctAnswers: 0,
         points: 0,
@@ -202,7 +202,7 @@ function QuizProvider({ children }: { children: React.ReactNode }) {
       category,
       difficulty,
       questions,
-      currentQuestion,
+      currentQuestionIndex,
       selectedAnswer,
       correctAnswers,
       points,
@@ -245,7 +245,7 @@ function QuizProvider({ children }: { children: React.ReactNode }) {
         category,
         difficulty,
         questions,
-        currentQuestion,
+        currentQuestionIndex,
         selectedAnswer,
         correctAnswers,
         points,

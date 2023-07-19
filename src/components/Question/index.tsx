@@ -1,27 +1,32 @@
+import { QuestionType, useQuiz } from '../../contexts/QuizContext';
 import styles from './Question.module.css';
 
+import { shuffleArray } from '../utils/arrayUtils';
+
 export default function Question() {
+  const { questions, currentQuestionIndex } = useQuiz();
+  const currentQuestion = questions.at(currentQuestionIndex) as QuestionType;
+
+  const answers = [
+    currentQuestion?.correct_answer,
+    ...currentQuestion.incorrect_answers,
+  ];
+
+  const shuffledAnswers = shuffleArray(answers);
+
   return (
     <div className={styles.questionWrapper}>
       <header className={styles.questionMeta}>
-        <p>General Knowledge</p>
-        <p>Easy (10 points)</p>
+        <p>{currentQuestion?.category}</p>
+        <p>{currentQuestion?.difficulty}</p>
       </header>
-      <p className={styles.questionText}>
-        Which of the following card games revolves around numbers and basic
-        math?
-      </p>
+      <p className={styles.questionText}>{currentQuestion?.question}</p>
       <ul className={styles.answerOptions}>
-        <li className={styles.answerOption}>Uno</li>
-        <li className={`${styles.answerOption} ${styles.answerCorrect}`}>
-          Go Fish
-        </li>
-        <li className={`${styles.answerOption} ${styles.answerSelected}`}>
-          Twister
-        </li>
-        <li className={`${styles.answerOption} ${styles.answerIncorrect}`}>
-          Munchkin
-        </li>
+        {shuffledAnswers.map((answer) => (
+          <li className={styles.answerOption} key={answer}>
+            {answer}
+          </li>
+        ))}
       </ul>
     </div>
   );
