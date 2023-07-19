@@ -4,7 +4,7 @@ import Question from '../Question';
 import styles from './QuizScreen.module.css';
 
 export default function QuizScreen() {
-  const { questions, currentQuestionIndex, points } = useQuiz();
+  const { questions, currentQuestionIndex, points, dispatch } = useQuiz();
   const currentQuestionNumber = currentQuestionIndex + 1;
   const totalNumberOfQuestions = questions.length;
 
@@ -27,8 +27,10 @@ export default function QuizScreen() {
 
       <Button
         size="small"
-        onClick={function () {
-          return;
+        onClick={() => {
+          if (dispatch) {
+            dispatch({ type: 'nextQuestion' });
+          }
         }}
       >
         Next Question

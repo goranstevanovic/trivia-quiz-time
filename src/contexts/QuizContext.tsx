@@ -230,9 +230,10 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
             : state.points,
       };
     case 'nextQuestion': {
+      console.log(state.currentQuestionIndex);
       return {
         ...state,
-        currentQuestionIndex: (state.currentQuestionIndex += 1),
+        currentQuestionIndex: state.currentQuestionIndex++,
         selectedAnswer: '',
       };
     }
