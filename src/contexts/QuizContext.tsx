@@ -7,9 +7,8 @@ type QuizStatus =
   | 'error'
   | 'active'
   | 'finished';
-type QuizActionType = 'showSettings';
-type QuizNumberOfQuestions = '10' | '20' | '30' | '40' | '50';
-type QuizQuestionCategory =
+export type QuizNumberOfQuestions = '10' | '20' | '30' | '40' | '50';
+export type QuizQuestionCategory =
   | 'any'
   | '9'
   | '10'
@@ -35,7 +34,7 @@ type QuizQuestionCategory =
   | '30'
   | '31'
   | '32';
-type QuizQuestionDifficulty = 'any' | 'easy' | 'medium' | 'hard';
+export type QuizQuestionDifficulty = 'any' | 'easy' | 'medium' | 'hard';
 type Question = {
   category: string;
   type: string;
@@ -62,9 +61,36 @@ type QuizState = {
   dispatch?: QuizDispatch;
 };
 
-type QuizAction = {
-  type: QuizActionType;
+type QuizActionShowSettings = {
+  type: 'showSettings';
 };
+
+type QuizActionSettingsSaveName = {
+  type: 'saveName';
+  payload: string;
+};
+
+type QuizActionSettingsSaveNumberOfQuestions = {
+  type: 'saveNumberOfQuestions';
+  payload: QuizNumberOfQuestions;
+};
+
+type QuizActionSettingsSaveCategory = {
+  type: 'saveCategory';
+  payload: QuizQuestionCategory;
+};
+
+type QuizActionSettingsSaveDifficulty = {
+  type: 'saveDifficulty';
+  payload: QuizQuestionDifficulty;
+};
+
+type QuizAction =
+  | QuizActionShowSettings
+  | QuizActionSettingsSaveName
+  | QuizActionSettingsSaveNumberOfQuestions
+  | QuizActionSettingsSaveCategory
+  | QuizActionSettingsSaveDifficulty;
 
 const initialState: QuizState = {
   status: 'inactive',
@@ -87,6 +113,26 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
       return {
         ...state,
         status: 'showSettings',
+      };
+    case 'saveName':
+      return {
+        ...state,
+        name: action.payload,
+      };
+    case 'saveNumberOfQuestions':
+      return {
+        ...state,
+        numberOfQuestions: action.payload,
+      };
+    case 'saveCategory':
+      return {
+        ...state,
+        category: action.payload,
+      };
+    case 'saveDifficulty':
+      return {
+        ...state,
+        difficulty: action.payload,
       };
     default:
       return state;
