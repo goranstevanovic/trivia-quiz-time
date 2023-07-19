@@ -4,7 +4,7 @@ import styles from './Question.module.css';
 import { shuffleArray } from '../utils/arrayUtils';
 
 export default function Question() {
-  const { questions, currentQuestionIndex } = useQuiz();
+  const { questions, currentQuestionIndex, dispatch } = useQuiz();
   const currentQuestion = questions.at(currentQuestionIndex) as QuestionType;
 
   const answers = [
@@ -23,7 +23,15 @@ export default function Question() {
       <p className={styles.questionText}>{currentQuestion?.question}</p>
       <ul className={styles.answerOptions}>
         {shuffledAnswers.map((answer) => (
-          <li className={styles.answerOption} key={answer}>
+          <li
+            className={styles.answerOption}
+            key={answer}
+            onClick={() => {
+              if (dispatch) {
+                dispatch({ type: 'newAnswer', payload: answer });
+              }
+            }}
+          >
             {answer}
           </li>
         ))}
