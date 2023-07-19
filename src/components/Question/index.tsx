@@ -10,12 +10,20 @@ export default function Question() {
   const currentQuestion = questions.at(currentQuestionIndex) as QuestionType;
 
   const answers = useMemo(() => {
-    return [
-      currentQuestion?.correct_answer,
-      ...currentQuestion.incorrect_answers,
-    ];
+    if (currentQuestion) {
+      return [
+        currentQuestion?.correct_answer,
+        ...currentQuestion.incorrect_answers,
+      ];
+    }
   }, [currentQuestion]);
-  const shuffledAnswers = useMemo(() => shuffleArray(answers), [answers]);
+
+  const shuffledAnswers = useMemo(() => {
+    if (answers) {
+      return shuffleArray(answers);
+    }
+  }, [answers]);
+
   const isAnswered = selectedAnswer !== '';
 
   return (
@@ -26,7 +34,7 @@ export default function Question() {
       </header>
       <p className={styles.questionText}>{currentQuestion?.question}</p>
       <ul className={styles.answerOptions}>
-        {shuffledAnswers.map((answer) => (
+        {shuffledAnswers?.map((answer) => (
           <li key={answer}>
             <button
               className={`${styles.answerOption} ${
