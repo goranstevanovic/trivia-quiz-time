@@ -145,6 +145,10 @@ type QuizActionFinishQuiz = {
   type: 'finishQuiz';
 };
 
+type QuizActionPlayAgain = {
+  type: 'playAgain';
+};
+
 type QuizAction =
   | QuizActionShowSettings
   | QuizActionSettingsSaveName
@@ -156,7 +160,8 @@ type QuizAction =
   | QuizActionDataFailed
   | QuizActionNewAnswer
   | QuizActionNextQuestion
-  | QuizActionFinishQuiz;
+  | QuizActionFinishQuiz
+  | QuizActionPlayAgain;
 
 const initialState: QuizState = {
   status: 'inactive',
@@ -273,6 +278,18 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
         status: 'finished',
       };
     }
+    case 'playAgain':
+      return {
+        ...state,
+        status: 'showSettings',
+        questions: [],
+        currentQuestionIndex: 0,
+        selectedAnswer: '',
+        correctAnswers: 0,
+        points: 0,
+        totalPossiblePoints: 100,
+        error: '',
+      };
     default:
       return state;
   }
