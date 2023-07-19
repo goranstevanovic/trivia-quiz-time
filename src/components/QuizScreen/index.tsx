@@ -4,9 +4,20 @@ import Question from '../Question';
 import styles from './QuizScreen.module.css';
 
 export default function QuizScreen() {
-  const { questions, currentQuestionIndex, points } = useQuiz();
+  const { questions, currentQuestionIndex, points, dispatch } = useQuiz();
   const currentQuestionNumber = currentQuestionIndex + 1;
   const totalNumberOfQuestions = questions.length;
+
+  const buttonText =
+    currentQuestionIndex === questions.length - 1
+      ? 'Finish Quiz'
+      : ' Next Question';
+
+  function nextButtonClickHandler() {
+    if (dispatch) {
+      dispatch({ type: 'nextQuestion' });
+    }
+  }
 
   return (
     <div className={styles.quizScreen}>
@@ -25,13 +36,8 @@ export default function QuizScreen() {
 
       <Question />
 
-      <Button
-        size="small"
-        onClick={function () {
-          return;
-        }}
-      >
-        Next Question
+      <Button size="small" onClick={nextButtonClickHandler}>
+        {buttonText}
       </Button>
     </div>
   );
