@@ -68,7 +68,7 @@ type QuizState = {
   difficulty: QuizQuestionDifficulty;
   questions: QuestionsType;
   currentQuestionIndex: number;
-  selectedAnswer: number | null;
+  selectedAnswer: string;
   correctAnswers: number;
   points: number;
   error: string;
@@ -113,6 +113,11 @@ type QuizActionDataFailed = {
   payload: string;
 };
 
+type QuizActionNewAnswer = {
+  type: 'newAnswer';
+  payload: string;
+};
+
 type QuizAction =
   | QuizActionShowSettings
   | QuizActionSettingsSaveName
@@ -121,7 +126,8 @@ type QuizAction =
   | QuizActionSettingsSaveDifficulty
   | QuizActionStartQuiz
   | QuizActionDataReceived
-  | QuizActionDataFailed;
+  | QuizActionDataFailed
+  | QuizActionNewAnswer;
 
 const initialState: QuizState = {
   status: 'inactive',
@@ -131,7 +137,7 @@ const initialState: QuizState = {
   difficulty: 'any',
   questions: [],
   currentQuestionIndex: 0,
-  selectedAnswer: null,
+  selectedAnswer: '',
   correctAnswers: 0,
   points: 0,
   error: '',
@@ -140,6 +146,27 @@ const initialState: QuizState = {
 const QuizContext = createContext<QuizState | null>(null);
 
 function quizReducer(state: QuizState, action: QuizAction): QuizState {
+  let currentQuestion;
+  let currentCorrectAnswer;
+  let currentPoints = 0;
+
+  if (state.questions.length > 0) {
+    currentQuestion = state.questions[state.currentQuestionIndex];
+    currentCorrectAnswer = currentQuestion.correct_answer;
+    currentPoints = 0;
+    switch (currentQuestion.difficulty) {
+      case 'easy':
+        currentPoints = 10;
+        break;
+      case 'medium':
+        currentPoints = 20;
+        break;
+      case 'hard':
+        currentPoints = 30;
+        break;
+    }
+  }
+
   switch (action.type) {
     case 'showSettings':
       return {
@@ -172,7 +199,7 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
         status: 'loading',
         questions: [],
         currentQuestionIndex: 0,
-        selectedAnswer: null,
+        selectedAnswer: '',
         correctAnswers: 0,
         points: 0,
       };
@@ -187,6 +214,12 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
         ...state,
         status: 'error',
         error: action.payload,
+      };
+    case 'newAnswer':
+      return {
+        ...state,
+        selectedAnswer: action.payload,
+        points: action.payload === currentCorrectAnswer ? currentPoints : 0,
       };
     default:
       return state;
