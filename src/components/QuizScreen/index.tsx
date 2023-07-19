@@ -8,6 +8,11 @@ export default function QuizScreen() {
   const currentQuestionNumber = currentQuestionIndex + 1;
   const totalNumberOfQuestions = questions.length;
 
+  const buttonText =
+    currentQuestionIndex === questions.length - 1
+      ? 'Finish Quiz'
+      : ' Next Question';
+
   function nextButtonClickHandler() {
     if (dispatch) {
       dispatch({ type: 'nextQuestion' });
@@ -32,7 +37,7 @@ export default function QuizScreen() {
       <Question />
 
       <Button size="small" onClick={nextButtonClickHandler}>
-        Next Question
+        {buttonText}
       </Button>
     </div>
   );
