@@ -3,9 +3,10 @@ import Button from '../Button';
 import styles from './ResultsScreen.module.css';
 
 export default function ResultsScreen() {
-  const { questions, correctAnswers, points } = useQuiz();
+  const { questions, correctAnswers, points, totalPossiblePoints } = useQuiz();
   const totalAnswers = questions.length;
   const correctAnswersPercent = (correctAnswers / totalAnswers) * 100;
+  const pointsPercentage = (points / totalPossiblePoints) * 100;
 
   return (
     <div className={styles.resultsScreen}>
@@ -19,7 +20,9 @@ export default function ResultsScreen() {
         </div>
         <div>
           <h2 className={styles.resultsTitle}>Total points:</h2>
-          <p className={styles.resultsStats}>{points}/1,500 &ndash; 67%</p>
+          <p className={styles.resultsStats}>
+            {points}/{totalPossiblePoints} &ndash; {pointsPercentage}%
+          </p>
         </div>
       </div>
 
