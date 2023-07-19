@@ -118,6 +118,10 @@ type QuizActionNewAnswer = {
   payload: string;
 };
 
+type QuizActionNextQuestion = {
+  type: 'nextQuestion';
+};
+
 type QuizAction =
   | QuizActionShowSettings
   | QuizActionSettingsSaveName
@@ -127,7 +131,8 @@ type QuizAction =
   | QuizActionStartQuiz
   | QuizActionDataReceived
   | QuizActionDataFailed
-  | QuizActionNewAnswer;
+  | QuizActionNewAnswer
+  | QuizActionNextQuestion;
 
 const initialState: QuizState = {
   status: 'inactive',
@@ -224,6 +229,13 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
             ? state.points + currentPoints
             : state.points,
       };
+    case 'nextQuestion': {
+      return {
+        ...state,
+        currentQuestionIndex: (state.currentQuestionIndex += 1),
+        selectedAnswer: '',
+      };
+    }
     default:
       return state;
   }
