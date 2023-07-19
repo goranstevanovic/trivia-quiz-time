@@ -2,12 +2,12 @@ import { Dispatch, createContext, useContext, useReducer } from 'react';
 
 type QuizStatus =
   | 'inactive'
-  | 'settings'
+  | 'showSettings'
   | 'loading'
   | 'error'
   | 'active'
   | 'finished';
-type QuizActionType = 'settings';
+type QuizActionType = 'showSettings';
 type QuizNumberOfQuestions = '10' | '20' | '30' | '40' | '50';
 type QuizQuestionCategory =
   | 'any'
@@ -83,10 +83,10 @@ const QuizContext = createContext<QuizState | null>(null);
 
 function quizReducer(state: QuizState, action: QuizAction): QuizState {
   switch (action.type) {
-    case 'settings':
+    case 'showSettings':
       return {
         ...state,
-        status: 'settings',
+        status: 'showSettings',
       };
     default:
       return state;

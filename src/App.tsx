@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       {status === 'inactive' && <StartScreen />}
-      {status === 'settings' && <SettingsScreen />}
+      {status === 'showSettings' && <SettingsScreen />}
     </>
   );
 }
