@@ -233,6 +233,10 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
           action.payload === currentCorrectAnswer
             ? state.points + currentPoints
             : state.points,
+        correctAnswers:
+          action.payload === currentCorrectAnswer
+            ? state.correctAnswers + 1
+            : state.correctAnswers,
       };
     case 'nextQuestion': {
       console.log(state.currentQuestionIndex);
