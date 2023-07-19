@@ -2,17 +2,20 @@ import { QuestionType, useQuiz } from '../../contexts/QuizContext';
 import styles from './Question.module.css';
 
 import { shuffleArray } from '../utils/arrayUtils';
+import { useMemo } from 'react';
 
 export default function Question() {
   const { questions, currentQuestionIndex, selectedAnswer, dispatch } =
     useQuiz();
   const currentQuestion = questions.at(currentQuestionIndex) as QuestionType;
 
-  const answers = [
-    currentQuestion?.correct_answer,
-    ...currentQuestion.incorrect_answers,
-  ];
-  const shuffledAnswers = shuffleArray(answers);
+  const answers = useMemo(() => {
+    return [
+      currentQuestion?.correct_answer,
+      ...currentQuestion.incorrect_answers,
+    ];
+  }, [currentQuestion]);
+  const shuffledAnswers = useMemo(() => shuffleArray(answers), [answers]);
   const isAnswered = selectedAnswer !== '';
 
   return (
