@@ -1,4 +1,17 @@
-import { Dispatch, createContext, useContext, useReducer } from 'react';
+import {
+  Dispatch,
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+} from 'react';
+
+const BASE_URL = 'https://opentdb.com/api.php';
+
+type QuizAPIResponse = {
+  response_code: number;
+  results: [];
+};
 
 type QuizStatus =
   | 'inactive'
@@ -58,6 +71,7 @@ type QuizState = {
   selectedAnswer: number | null;
   correctAnswers: number;
   points: number;
+  error: string;
   dispatch?: QuizDispatch;
 };
 
@@ -85,12 +99,29 @@ type QuizActionSettingsSaveDifficulty = {
   payload: QuizQuestionDifficulty;
 };
 
+type QuizActionStartQuiz = {
+  type: 'startQuiz';
+};
+
+type QuizActionDataReceived = {
+  type: 'dataReceived';
+  payload: Questions;
+};
+
+type QuizActionDataFailed = {
+  type: 'dataFailed';
+  payload: string;
+};
+
 type QuizAction =
   | QuizActionShowSettings
   | QuizActionSettingsSaveName
   | QuizActionSettingsSaveNumberOfQuestions
   | QuizActionSettingsSaveCategory
-  | QuizActionSettingsSaveDifficulty;
+  | QuizActionSettingsSaveDifficulty
+  | QuizActionStartQuiz
+  | QuizActionDataReceived
+  | QuizActionDataFailed;
 
 const initialState: QuizState = {
   status: 'inactive',
@@ -103,6 +134,7 @@ const initialState: QuizState = {
   selectedAnswer: null,
   correctAnswers: 0,
   points: 0,
+  error: '',
 };
 
 const QuizContext = createContext<QuizState | null>(null);
@@ -134,6 +166,28 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
         ...state,
         difficulty: action.payload,
       };
+    case 'startQuiz':
+      return {
+        ...state,
+        status: 'loading',
+        questions: [],
+        currentQuestion: 0,
+        selectedAnswer: null,
+        correctAnswers: 0,
+        points: 0,
+      };
+    case 'dataReceived':
+      return {
+        ...state,
+        status: 'active',
+        questions: action.payload,
+      };
+    case 'dataFailed':
+      return {
+        ...state,
+        status: 'error',
+        error: action.payload,
+      };
     default:
       return state;
   }
@@ -152,9 +206,35 @@ function QuizProvider({ children }: { children: React.ReactNode }) {
       selectedAnswer,
       correctAnswers,
       points,
+      error,
     },
     dispatch,
   ] = useReducer(quizReducer, initialState);
+
+  useEffect(
+    function () {
+      if (status !== 'loading') return;
+
+      async function getQuestions() {
+        const categoryParam = category === 'any' ? '' : category;
+        const difficultyParam = difficulty === 'any' ? '' : difficulty;
+
+        const url = `${BASE_URL}?amount=${numberOfQuestions}&category=${categoryParam}&difficulty=${difficultyParam}`;
+
+        try {
+          const res = await fetch(url);
+          const data = (await res.json()) as QuizAPIResponse;
+          const { results } = data;
+          dispatch({ type: 'dataReceived', payload: results });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      void getQuestions();
+    },
+    [status, numberOfQuestions, category, difficulty],
+  );
 
   return (
     <QuizContext.Provider
@@ -169,6 +249,7 @@ function QuizProvider({ children }: { children: React.ReactNode }) {
         selectedAnswer,
         correctAnswers,
         points,
+        error,
         dispatch,
       }}
     >
