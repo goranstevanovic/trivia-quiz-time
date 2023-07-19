@@ -31,17 +31,12 @@
 }
 
 .answerOptions {
-  color: var(--text-primary);
   display: flex;
   flex-direction: column;
-  font-size: 1.125rem;
-  font-weight: 600;
   gap: 1.5rem;
-  line-height: 1.5;
   list-style: none;
   margin: 0;
   padding: 0;
-  text-align: center;
 }
 
 .answerOption {
@@ -49,7 +44,13 @@
   border-radius: var(--border-radius);
   border: var(--border);
   box-shadow: var(--box-shadow);
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5;
   padding: 1rem;
+  text-align: center;
+  width: 100%;
 }
 
 .answerSelected {

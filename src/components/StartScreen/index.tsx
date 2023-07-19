@@ -8,7 +8,7 @@ export default function StartScreen() {
 
   function handleClick() {
     if (dispatch) {
-      dispatch({ type: 'settings' });
+      dispatch({ type: 'showSettings' });
     }
   }
 

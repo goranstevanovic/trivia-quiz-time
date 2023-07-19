@@ -1,27 +1,66 @@
+import { QuestionType, useQuiz } from '../../contexts/QuizContext';
 import styles from './Question.module.css';
 
+import { shuffleArray } from '../utils/arrayUtils';
+import { useMemo } from 'react';
+
 export default function Question() {
+  const { questions, currentQuestionIndex, selectedAnswer, dispatch } =
+    useQuiz();
+  const currentQuestion = questions.at(currentQuestionIndex) as QuestionType;
+
+  const answers = useMemo(() => {
+    if (currentQuestion) {
+      return [
+        currentQuestion?.correct_answer,
+        ...currentQuestion.incorrect_answers,
+      ];
+    }
+  }, [currentQuestion]);
+
+  const shuffledAnswers = useMemo(() => {
+    if (answers) {
+      return shuffleArray(answers);
+    }
+  }, [answers]);
+
+  const isAnswered = selectedAnswer !== '';
+
   return (
     <div className={styles.questionWrapper}>
       <header className={styles.questionMeta}>
-        <p>General Knowledge</p>
-        <p>Easy (10 points)</p>
+        <p>{currentQuestion?.category}</p>
+        <p>{currentQuestion?.difficulty}</p>
       </header>
-      <p className={styles.questionText}>
-        Which of the following card games revolves around numbers and basic
-        math?
-      </p>
+      <p className={styles.questionText}>{currentQuestion?.question}</p>
       <ul className={styles.answerOptions}>
-        <li className={styles.answerOption}>Uno</li>
-        <li className={`${styles.answerOption} ${styles.answerCorrect}`}>
-          Go Fish
-        </li>
-        <li className={`${styles.answerOption} ${styles.answerSelected}`}>
-          Twister
-        </li>
-        <li className={`${styles.answerOption} ${styles.answerIncorrect}`}>
-          Munchkin
-        </li>
+        {shuffledAnswers?.map((answer) => (
+          <li key={answer}>
+            <button
+              className={`${styles.answerOption} ${
+                isAnswered && answer === selectedAnswer
+                  ? selectedAnswer === currentQuestion.correct_answer
+                    ? styles.answerCorrect
+                    : styles.answerIncorrect
+                  : ''
+              } ${
+                isAnswered && answer !== selectedAnswer
+                  ? answer === currentQuestion.correct_answer
+                    ? styles.answerCorrect
+                    : ''
+                  : ''
+              }`}
+              disabled={isAnswered}
+              onClick={() => {
+                if (dispatch) {
+                  dispatch({ type: 'newAnswer', payload: answer });
+                }
+              }}
+            >
+              {answer}
+            </button>
+          </li>
+        ))}
       </ul>
     </div>
   );

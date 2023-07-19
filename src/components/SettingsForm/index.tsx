@@ -1,15 +1,45 @@
+import {
+  QuizNumberOfQuestions,
+  QuizQuestionCategory,
+  QuizQuestionDifficulty,
+  useQuiz,
+} from '../../contexts/QuizContext';
 import styles from './SettingsForm.module.css';
 
 export default function SettingsForm() {
+  const { name, numberOfQuestions, category, difficulty, dispatch } = useQuiz();
+
   return (
     <form className={styles.form}>
       <div>
         <label htmlFor="name">Your name</label>
-        <input id="name" type="text" placeholder="John Doe" />
+        <input
+          id="name"
+          type="text"
+          placeholder="John Doe"
+          value={name}
+          onChange={(e) => {
+            if (dispatch) {
+              dispatch({ type: 'saveName', payload: e.target.value });
+            }
+          }}
+        />
       </div>
+
       <div>
         <label htmlFor="questions-quantity">Number of questions</label>
-        <select id="questions-quantity">
+        <select
+          id="questions-quantity"
+          value={numberOfQuestions}
+          onChange={(e) => {
+            if (dispatch) {
+              dispatch({
+                type: 'saveNumberOfQuestions',
+                payload: e.target.value as QuizNumberOfQuestions,
+              });
+            }
+          }}
+        >
           <option value="10">10</option>
           <option value="20">20</option>
           <option value="30">30</option>
@@ -17,9 +47,21 @@ export default function SettingsForm() {
           <option value="50">50</option>
         </select>
       </div>
+
       <div>
         <label htmlFor="category">Category</label>
-        <select id="category">
+        <select
+          id="category"
+          value={category}
+          onChange={(e) => {
+            if (dispatch) {
+              dispatch({
+                type: 'saveCategory',
+                payload: e.target.value as QuizQuestionCategory,
+              });
+            }
+          }}
+        >
           <option value="any">Any Category</option>
           <option value="9">General Knowledge</option>
           <option value="10">Entertainment: Books</option>
@@ -47,9 +89,21 @@ export default function SettingsForm() {
           <option value="32">Entertainment: Cartoon &amp; Animations</option>
         </select>
       </div>
+
       <div>
         <label htmlFor="difficulty">Difficulty</label>
-        <select id="difficulty">
+        <select
+          id="difficulty"
+          value={difficulty}
+          onChange={(e) => {
+            if (dispatch) {
+              dispatch({
+                type: 'saveDifficulty',
+                payload: e.target.value as QuizQuestionDifficulty,
+              });
+            }
+          }}
+        >
           <option value="any">Any Difficulty</option>
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
