@@ -8,6 +8,12 @@ export default function QuizScreen() {
   const currentQuestionNumber = currentQuestionIndex + 1;
   const totalNumberOfQuestions = questions.length;
 
+  function nextButtonClickHandler() {
+    if (dispatch) {
+      dispatch({ type: 'nextQuestion' });
+    }
+  }
+
   return (
     <div className={styles.quizScreen}>
       <div className={styles.quizMeta}>
@@ -25,14 +31,7 @@ export default function QuizScreen() {
 
       <Question />
 
-      <Button
-        size="small"
-        onClick={() => {
-          if (dispatch) {
-            dispatch({ type: 'nextQuestion' });
-          }
-        }}
-      >
+      <Button size="small" onClick={nextButtonClickHandler}>
         Next Question
       </Button>
     </div>
