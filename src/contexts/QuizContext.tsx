@@ -129,7 +129,6 @@ type QuizActionDataReceived = {
 
 type QuizActionDataFailed = {
   type: 'dataFailed';
-  payload: string;
 };
 
 type QuizActionNewAnswer = {
@@ -249,7 +248,6 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
       return {
         ...state,
         status: 'error',
-        error: action.payload,
       };
     case 'newAnswer':
       return {
@@ -329,7 +327,7 @@ function QuizProvider({ children }: { children: React.ReactNode }) {
           const { results } = data;
           dispatch({ type: 'dataReceived', payload: results });
         } catch (error) {
-          console.log(error);
+          dispatch({ type: 'dataFailed' });
         }
       }
 
