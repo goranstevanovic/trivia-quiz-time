@@ -18,6 +18,8 @@ export default function SettingsForm() {
           type="text"
           placeholder="John Doe"
           value={name}
+          maxLength={30}
+          required
           onChange={(e) => {
             if (dispatch) {
               dispatch({ type: 'saveName', payload: e.target.value });
