@@ -11,7 +11,16 @@ export default function SettingsForm() {
   const { name, numberOfQuestions, category, difficulty, dispatch } = useQuiz();
 
   return (
-    <form className={styles.form}>
+    <form
+      className={styles.form}
+      onSubmit={(e) => {
+        e.preventDefault();
+
+        if (dispatch) {
+          dispatch({ type: 'startQuiz' });
+        }
+      }}
+    >
       <div>
         <label htmlFor="name">Your name</label>
         <input
