@@ -8,7 +8,7 @@ describe('ErrorScreen', () => {
     render(<ErrorScreen />);
 
     const message =
-      'Something went wrong while trying to get questions and answers for your game of quiz. Please try again.';
+      'Oops! Something went wrong while loading questions and answers for the quiz. Please try again.';
 
     expect(screen.getByText(message)).toBeDefined();
   });
