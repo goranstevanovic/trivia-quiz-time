@@ -4,7 +4,8 @@ import Question from '../Question';
 import styles from './QuizScreen.module.css';
 
 export default function QuizScreen() {
-  const { questions, currentQuestionIndex, points, dispatch } = useQuiz();
+  const { questions, currentQuestionIndex, selectedAnswer, points, dispatch } =
+    useQuiz();
   const currentQuestionNumber = currentQuestionIndex + 1;
   const totalNumberOfQuestions = questions.length;
 
@@ -47,7 +48,11 @@ export default function QuizScreen() {
 
       <Question />
 
-      <Button size="small" onClick={buttonClickHandler}>
+      <Button
+        size="small"
+        disabled={selectedAnswer === ''}
+        onClick={buttonClickHandler}
+      >
         {buttonText}
       </Button>
     </div>
