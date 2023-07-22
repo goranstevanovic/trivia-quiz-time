@@ -11,6 +11,16 @@
   background: var(--background-gradient-light);
 }
 
+.button:disabled {
+  background: var(--background-light-transparent);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+}
+
+.button:disabled:hover {
+  background: var(--background-light-transparent);
+}
+
 .big {
   font-size: 1.5rem;
 }
