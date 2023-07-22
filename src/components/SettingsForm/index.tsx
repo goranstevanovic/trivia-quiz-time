@@ -4,13 +4,23 @@ import {
   QuizQuestionDifficulty,
   useQuiz,
 } from '../../contexts/QuizContext';
+import Button from '../Button';
 import styles from './SettingsForm.module.css';
 
 export default function SettingsForm() {
   const { name, numberOfQuestions, category, difficulty, dispatch } = useQuiz();
 
   return (
-    <form className={styles.form}>
+    <form
+      className={styles.form}
+      onSubmit={(e) => {
+        e.preventDefault();
+
+        if (dispatch) {
+          dispatch({ type: 'startQuiz' });
+        }
+      }}
+    >
       <div>
         <label htmlFor="name">Your name</label>
         <input
@@ -18,6 +28,8 @@ export default function SettingsForm() {
           type="text"
           placeholder="John Doe"
           value={name}
+          maxLength={30}
+          required
           onChange={(e) => {
             if (dispatch) {
               dispatch({ type: 'saveName', payload: e.target.value });
@@ -110,6 +122,8 @@ export default function SettingsForm() {
           <option value="hard">Hard</option>
         </select>
       </div>
+
+      <Button>Start Quiz</Button>
     </form>
   );
 }

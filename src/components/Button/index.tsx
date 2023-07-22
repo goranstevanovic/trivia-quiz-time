@@ -5,7 +5,7 @@ type ButtonSize = 'big' | 'small';
 type ButtonProps = {
   size?: ButtonSize;
   children: React.ReactNode;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 export default function Button({
