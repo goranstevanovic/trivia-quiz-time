@@ -7,6 +7,9 @@ describe('ErrorScreen', () => {
   it('displays correct text', () => {
     render(<ErrorScreen />);
 
-    expect(screen.getByText('ErrorScreen')).toBeDefined();
+    const message =
+      'Something went wrong while trying to get questions and answers for your game of quiz. Please try again.';
+
+    expect(screen.getByText(message)).toBeDefined();
   });
 });
