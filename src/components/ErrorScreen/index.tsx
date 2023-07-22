@@ -1,5 +1,6 @@
 import { useQuiz } from '../../contexts/QuizContext';
 import Button from '../Button';
+import styles from './ErrorScreen.module.css';
 
 export default function ErrorScreen() {
   const { dispatch } = useQuiz();
@@ -14,8 +15,8 @@ export default function ErrorScreen() {
   }
 
   return (
-    <div>
-      <p>{message}</p>
+    <div className={styles.errorWrapper}>
+      <p className={styles.errorMessage}>{message}</p>
 
       <Button onClick={handleTryAgainClick}>Try Again</Button>
     </div>
