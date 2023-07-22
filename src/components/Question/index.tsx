@@ -3,6 +3,7 @@ import styles from './Question.module.css';
 
 import { shuffleArray } from '../utils/arrayUtils';
 import { useMemo } from 'react';
+import { decode } from 'html-entities';
 
 export default function Question() {
   const { questions, currentQuestionIndex, selectedAnswer, dispatch } =
@@ -32,7 +33,7 @@ export default function Question() {
         <p>{currentQuestion?.category}</p>
         <p>{currentQuestion?.difficulty}</p>
       </header>
-      <p className={styles.questionText}>{currentQuestion?.question}</p>
+      <p className={styles.questionText}>{decode(currentQuestion?.question)}</p>
       <ul className={styles.answerOptions}>
         {shuffledAnswers?.map((answer) => (
           <li key={answer}>
@@ -57,7 +58,7 @@ export default function Question() {
                 }
               }}
             >
-              {answer}
+              {decode(answer)}
             </button>
           </li>
         ))}
