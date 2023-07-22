@@ -4,6 +4,7 @@ import {
   QuizQuestionDifficulty,
   useQuiz,
 } from '../../contexts/QuizContext';
+import Button from '../Button';
 import styles from './SettingsForm.module.css';
 
 export default function SettingsForm() {
@@ -112,6 +113,8 @@ export default function SettingsForm() {
           <option value="hard">Hard</option>
         </select>
       </div>
+
+      <Button>Start Quiz</Button>
     </form>
   );
 }
