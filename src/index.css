@@ -71,3 +71,9 @@ body {
 button {
   cursor: pointer;
 }
+
+button:focus,
+input:focus,
+select:focus {
+  outline: 3px solid var(--text-accent);
+}
