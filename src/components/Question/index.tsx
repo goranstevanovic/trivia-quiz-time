@@ -9,7 +9,7 @@ export default function Question() {
   const { questions, currentQuestionIndex, selectedAnswer, dispatch } =
     useQuiz();
   const currentQuestion = questions.at(currentQuestionIndex) as QuestionType;
-  const currentQuestionDifficulty = currentQuestion.difficulty;
+  const currentQuestionDifficulty = currentQuestion?.difficulty;
   let currentQuestionPoints: 10 | 20 | 30 = 10;
 
   switch (currentQuestionDifficulty) {
