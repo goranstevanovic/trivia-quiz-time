@@ -9,6 +9,20 @@ export default function Question() {
   const { questions, currentQuestionIndex, selectedAnswer, dispatch } =
     useQuiz();
   const currentQuestion = questions.at(currentQuestionIndex) as QuestionType;
+  const currentQuestionDifficulty = currentQuestion.difficulty;
+  let currentQuestionPoints: 10 | 20 | 30 = 10;
+
+  switch (currentQuestionDifficulty) {
+    case 'easy':
+      currentQuestionPoints = 10;
+      break;
+    case 'medium':
+      currentQuestionPoints = 20;
+      break;
+    case 'hard':
+      currentQuestionPoints = 30;
+      break;
+  }
 
   const answers = useMemo(() => {
     if (currentQuestion) {
@@ -31,7 +45,9 @@ export default function Question() {
     <div className={styles.questionWrapper}>
       <header className={styles.questionMeta}>
         <p>{currentQuestion?.category}</p>
-        <p>{currentQuestion?.difficulty}</p>
+        <p>
+          {currentQuestion?.difficulty} ({currentQuestionPoints} points)
+        </p>
       </header>
       <p className={styles.questionText}>{decode(currentQuestion?.question)}</p>
       <ul className={styles.answerOptions}>
