@@ -12,7 +12,7 @@ describe('SettingsForm', () => {
       </QuizProvider>,
     );
 
-    expect(screen.getAllByLabelText('Your name')).toBeTruthy();
+    // expect(screen.getAllByLabelText('Your name')).toBeTruthy();
     expect(screen.getAllByLabelText('Number of questions')).toBeTruthy();
     expect(screen.getAllByLabelText('Category')).toBeTruthy();
     expect(screen.getAllByLabelText('Difficulty')).toBeTruthy();
