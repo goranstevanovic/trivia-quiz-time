@@ -265,7 +265,7 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
     case 'nextQuestion': {
       return {
         ...state,
-        currentQuestionIndex: state.currentQuestionIndex++,
+        currentQuestionIndex: state.currentQuestionIndex + 1,
         selectedAnswer: '',
       };
     }
