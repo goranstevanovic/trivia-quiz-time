@@ -34,8 +34,10 @@ export default function Question() {
   }, [currentQuestion]);
 
   const shuffledAnswers = useMemo(() => {
-    if (answers) {
+    if (answers && answers.length > 2) {
       return shuffleArray(answers);
+    } else {
+      return ['True', 'False'];
     }
   }, [answers]);
 
