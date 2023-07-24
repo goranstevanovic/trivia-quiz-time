@@ -15,14 +15,12 @@ export default function QuizScreen() {
       : ' Next Question';
 
   function nextButtonClickHandler() {
-    console.log('nextButtonClickHandler from QuizScreen');
     if (dispatch) {
       dispatch({ type: 'nextQuestion' });
     }
   }
 
   function finishQuizClickHandler() {
-    console.log('finishQuizClickHandler from QuizScreen');
     if (dispatch) {
       dispatch({ type: 'finishQuiz' });
     }

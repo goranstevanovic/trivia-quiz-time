@@ -43,8 +43,6 @@ export default function Question() {
 
   const isAnswered = selectedAnswer !== '';
 
-  console.log(currentQuestionIndex);
-
   return (
     <div className={styles.questionWrapper}>
       <header className={styles.questionMeta}>

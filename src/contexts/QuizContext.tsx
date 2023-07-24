@@ -263,7 +263,6 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
             : state.correctAnswers,
       };
     case 'nextQuestion': {
-      console.log('nextQuestion action type');
       return {
         ...state,
         currentQuestionIndex: state.currentQuestionIndex + 1,
@@ -271,7 +270,6 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
       };
     }
     case 'finishQuiz': {
-      console.log('finishQuiz action type');
       return {
         ...state,
         status: 'finished',
