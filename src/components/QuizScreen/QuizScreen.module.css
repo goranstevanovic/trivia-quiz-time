@@ -1,8 +1,10 @@
 .quizScreen {
-  align-items: center;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  margin: 0 auto;
+  max-width: 30rem;
+  min-height: calc(100vh - 2rem);
   padding: 1rem;
 }
 

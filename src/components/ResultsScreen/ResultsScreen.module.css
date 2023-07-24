@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 4rem;
   justify-content: center;
+  min-height: calc(100vh - 2rem);
   padding: 1rem;
 }
 

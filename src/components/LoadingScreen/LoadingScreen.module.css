@@ -1,5 +1,12 @@
+.loadingScreen {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
 .loader {
-  display: inline-block;
   height: 10vw;
   width: 10vw;
 }
