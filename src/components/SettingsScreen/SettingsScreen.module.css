@@ -1,7 +1,5 @@
 .settingsScreen {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-  padding: 3rem;
+  margin: 0 auto;
+  max-width: 30rem;
+  min-height: 100vh;
 }
