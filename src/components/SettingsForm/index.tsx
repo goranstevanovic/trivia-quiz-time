@@ -8,7 +8,7 @@ import Button from '../Button';
 import styles from './SettingsForm.module.css';
 
 export default function SettingsForm() {
-  const { name, numberOfQuestions, category, difficulty, dispatch } = useQuiz();
+  const { numberOfQuestions, category, difficulty, dispatch } = useQuiz();
 
   return (
     <form
@@ -21,7 +21,7 @@ export default function SettingsForm() {
         }
       }}
     >
-      <div>
+      {/* <div>
         <label htmlFor="name">Your name</label>
         <input
           id="name"
@@ -36,7 +36,7 @@ export default function SettingsForm() {
             }
           }}
         />
-      </div>
+      </div> */}
 
       <div>
         <label htmlFor="questions-quantity">Number of questions</label>

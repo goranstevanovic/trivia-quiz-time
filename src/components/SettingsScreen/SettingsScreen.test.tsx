@@ -12,7 +12,7 @@ describe('SettingsScreen', () => {
       </QuizProvider>,
     );
 
-    expect(screen.getByText('Your name')).toBeTruthy();
+    expect(screen.getByText('Number of questions')).toBeTruthy();
   });
 
   it('displays Start Quiz button', () => {
