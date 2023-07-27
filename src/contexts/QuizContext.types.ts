@@ -13,9 +13,9 @@ type QuizStatus =
   | 'active'
   | 'finished';
 
-type QuizNumberOfQuestions = '10' | '20' | '30' | '40' | '50';
+export type QuizNumberOfQuestions = '10' | '20' | '30' | '40' | '50';
 
-type QuizQuestionCategory =
+export type QuizQuestionCategory =
   | 'any'
   | '9'
   | '10'
@@ -42,7 +42,7 @@ type QuizQuestionCategory =
   | '31'
   | '32';
 
-type QuizQuestionDifficulty = 'any' | 'easy' | 'medium' | 'hard';
+export type QuizQuestionDifficulty = 'any' | 'easy' | 'medium' | 'hard';
 
 export type QuestionType = {
   category: string;
