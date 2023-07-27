@@ -5,7 +5,7 @@ export type QuizAPIResponse = {
   results: [];
 };
 
-export type QuizStatus =
+type QuizStatus =
   | 'inactive'
   | 'showSettings'
   | 'loading'
@@ -13,9 +13,9 @@ export type QuizStatus =
   | 'active'
   | 'finished';
 
-export type QuizNumberOfQuestions = '10' | '20' | '30' | '40' | '50';
+type QuizNumberOfQuestions = '10' | '20' | '30' | '40' | '50';
 
-export type QuizQuestionCategory =
+type QuizQuestionCategory =
   | 'any'
   | '9'
   | '10'
@@ -42,7 +42,7 @@ export type QuizQuestionCategory =
   | '31'
   | '32';
 
-export type QuizQuestionDifficulty = 'any' | 'easy' | 'medium' | 'hard';
+type QuizQuestionDifficulty = 'any' | 'easy' | 'medium' | 'hard';
 
 export type QuestionType = {
   category: string;
@@ -55,7 +55,7 @@ export type QuestionType = {
 
 export type QuestionsType = QuestionType[];
 
-export type QuizDispatch = Dispatch<QuizAction>;
+type QuizDispatch = Dispatch<QuizAction>;
 
 export type QuizState = {
   status: QuizStatus;
@@ -73,57 +73,57 @@ export type QuizState = {
   dispatch?: QuizDispatch;
 };
 
-export type QuizActionShowSettings = {
+type QuizActionShowSettings = {
   type: 'showSettings';
 };
 
-export type QuizActionSettingsSaveName = {
+type QuizActionSettingsSaveName = {
   type: 'saveName';
   payload: string;
 };
 
-export type QuizActionSettingsSaveNumberOfQuestions = {
+type QuizActionSettingsSaveNumberOfQuestions = {
   type: 'saveNumberOfQuestions';
   payload: QuizNumberOfQuestions;
 };
 
-export type QuizActionSettingsSaveCategory = {
+type QuizActionSettingsSaveCategory = {
   type: 'saveCategory';
   payload: QuizQuestionCategory;
 };
 
-export type QuizActionSettingsSaveDifficulty = {
+type QuizActionSettingsSaveDifficulty = {
   type: 'saveDifficulty';
   payload: QuizQuestionDifficulty;
 };
 
-export type QuizActionStartQuiz = {
+type QuizActionStartQuiz = {
   type: 'startQuiz';
 };
 
-export type QuizActionDataReceived = {
+type QuizActionDataReceived = {
   type: 'dataReceived';
   payload: QuestionsType;
 };
 
-export type QuizActionDataFailed = {
+type QuizActionDataFailed = {
   type: 'dataFailed';
 };
 
-export type QuizActionNewAnswer = {
+type QuizActionNewAnswer = {
   type: 'newAnswer';
   payload: string;
 };
 
-export type QuizActionNextQuestion = {
+type QuizActionNextQuestion = {
   type: 'nextQuestion';
 };
 
-export type QuizActionFinishQuiz = {
+type QuizActionFinishQuiz = {
   type: 'finishQuiz';
 };
 
-export type QuizActionPlayAgain = {
+type QuizActionPlayAgain = {
   type: 'playAgain';
 };
 
