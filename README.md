@@ -50,3 +50,12 @@ To run this app locally, you'll need to have a `Noje.js` and an `npm` installed.
    `npm install`
 1. Start the app:  
    `npm run dev`
+
+## Usage
+
+1. Click the `Let's Play` button to configure the quiz.
+1. Select the number of questions that you want, the questions category, and the questions difficulty.
+1. Click the `Start Quiz` button to start the quiz.
+1. Answer the questions by clicking/tapping on the answer.
+1. Once you answer all the questions, your results will be shown. The results will show the total number of correct questions and the total number of points (points differ by question difficulty).
+1. If you want to play again, click the `Play Again` button.
