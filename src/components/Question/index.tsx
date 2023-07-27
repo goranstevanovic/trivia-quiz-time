@@ -1,4 +1,5 @@
-import { QuestionType, useQuiz } from '../../contexts/QuizContext';
+import { useQuiz } from '../../contexts/QuizContext';
+import { QuestionType } from '../../contexts/QuizContext.types';
 import styles from './Question.module.css';
 
 import { shuffleArray } from '../utils/arrayUtils';

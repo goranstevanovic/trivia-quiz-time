@@ -1,9 +1,9 @@
+import { useQuiz } from '../../contexts/QuizContext';
 import {
   QuizNumberOfQuestions,
   QuizQuestionCategory,
   QuizQuestionDifficulty,
-  useQuiz,
-} from '../../contexts/QuizContext';
+} from '../../contexts/QuizContext.types';
 import Button from '../Button';
 import styles from './SettingsForm.module.css';
 
