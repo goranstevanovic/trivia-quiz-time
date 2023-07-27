@@ -37,3 +37,16 @@ My goal with this project was to simulate a professional work environment.
 
 - Example of managing local state (using Context API and useReducer): [view code](https://github.com/goranstevanovic/trivia-quiz-time/blob/main/src/contexts/QuizContext.tsx#L48-L236)
 - Example of fetching data from the third-party API (using JavaScript Fetch): [view code](https://github.com/goranstevanovic/trivia-quiz-time/blob/main/src/contexts/QuizContext.tsx#L180-L203)
+
+## Getting started
+
+To run this app locally, you'll need to have a `Noje.js` and an `npm` installed. Once you have those installed, follow these steps:
+
+1. Clone the repository:  
+   `git clone https://github.com/goranstevanovic/trivia-quiz-time.git`
+1. Navigate to the project directory:  
+   `cd trivia-quiz-time`
+1. Install dependencies:  
+   `npm install`
+1. Start the app:  
+   `npm run dev`
