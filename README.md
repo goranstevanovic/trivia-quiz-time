@@ -32,3 +32,8 @@ My goal with this project was to simulate a professional work environment.
 - I worked with tasks in GitHub Projects: [view tasks](https://github.com/users/goranstevanovic/projects/7/views/1)
 - I used feature branches and pull requests: [example PR](https://github.com/goranstevanovic/trivia-quiz-time/pull/50)
 - I practiced test-driven development: [example test](https://github.com/goranstevanovic/trivia-quiz-time/blob/main/src/components/SettingsScreen/SettingsScreen.test.tsx)
+
+## How to navigate this project
+
+- Example of managing local state (using Context API and useReducer): [view code](https://github.com/goranstevanovic/trivia-quiz-time/blob/main/src/contexts/QuizContext.tsx#L48-L236)
+- Example of fetching data from the third-party API (using JavaScript Fetch): [view code](https://github.com/goranstevanovic/trivia-quiz-time/blob/main/src/contexts/QuizContext.tsx#L180-L203)
