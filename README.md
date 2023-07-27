@@ -19,3 +19,7 @@ Trivia Quiz Time is an online trivia quiz app that allows users to test their kn
 - React Testing Library
 - TypeScript
 - Vitest
+
+## Demo
+
+You can check out a live demo of the application at [https://www.triviaquiztime.com/](https://www.triviaquiztime.com/).
